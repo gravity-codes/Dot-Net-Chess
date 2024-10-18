@@ -13,6 +13,8 @@
     <None Remove="Assets\BishopB.png" />
     <None Remove="Assets\BishopW.png" />
     <None Remove="Assets\Board.png" />
+    <None Remove="Assets\capture.mp3" />
+    <None Remove="Assets\castle.mp3" />
     <None Remove="Assets\CursorB.cur" />
     <None Remove="Assets\CursorW.cur" />
     <None Remove="Assets\icon.ico" />
@@ -20,8 +22,12 @@
     <None Remove="Assets\KingW.png" />
     <None Remove="Assets\KnightB.png" />
     <None Remove="Assets\KnightW.png" />
+    <None Remove="Assets\move-check.mp3" />
+    <None Remove="Assets\move-self.mp3" />
+    <None Remove="Assets\notify.mp3" />
     <None Remove="Assets\PawnB.png" />
     <None Remove="Assets\PawnW.png" />
+    <None Remove="Assets\promote.mp3" />
     <None Remove="Assets\QueenB.png" />
     <None Remove="Assets\QueenW.png" />
     <None Remove="Assets\RookB.png" />
@@ -36,6 +42,8 @@
     <Resource Include="Assets\BishopB.png" />
     <Resource Include="Assets\BishopW.png" />
     <Resource Include="Assets\Board.png" />
+    <Resource Include="Assets\capture.mp3" />
+    <Resource Include="Assets\castle.mp3" />
     <Resource Include="Assets\CursorB.cur" />
     <Resource Include="Assets\CursorW.cur" />
     <Resource Include="Assets\icon.ico" />
@@ -43,8 +51,12 @@
     <Resource Include="Assets\KingW.png" />
     <Resource Include="Assets\KnightB.png" />
     <Resource Include="Assets\KnightW.png" />
+    <Resource Include="Assets\move-check.mp3" />
+    <Resource Include="Assets\move-self.mp3" />
+    <Resource Include="Assets\notify.mp3" />
     <Resource Include="Assets\PawnB.png" />
     <Resource Include="Assets\PawnW.png" />
+    <Resource Include="Assets\promote.mp3" />
     <Resource Include="Assets\QueenB.png" />
     <Resource Include="Assets\QueenW.png" />
     <Resource Include="Assets\RookB.png" />
