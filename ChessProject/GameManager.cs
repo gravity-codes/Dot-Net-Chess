@@ -18,7 +18,8 @@
                 return Enumerable.Empty<Move>();
             }
 
-            return Board[pos].GetMoves(pos, Board);
+            IEnumerable<Move> potentialMoves = Board[pos].GetMoves(pos, Board);
+            return potentialMoves.Where(move => move.IsLegal(Board));
         }
 
         public void MakeMove(Move move)

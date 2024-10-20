@@ -8,7 +8,7 @@ namespace Chess_UI
     {
         private static readonly Dictionary<PieceType, ImageSource> whiteSources = new Dictionary<PieceType, ImageSource>()
         {
-            { PieceType.Pawn, LoadImage("Assets/PawnW") },
+            { PieceType.Pawn, LoadImage("Assets/PawnW.png") },
             { PieceType.Bishop, LoadImage("Assets/BishopW.png") },
             { PieceType.Knight, LoadImage("Assets/KnightW.png") },
             { PieceType.Rook, LoadImage("Assets/RookW.png") },
