@@ -66,6 +66,11 @@ namespace Chess_UI
 
         private void BoardGrid_MouseDown(object sender, MouseButtonEventArgs e)
         {
+            if (IsMenuOnSceen()) 
+            {
+                return;
+            }
+
             Position pos = ToSquarePosition(e.GetPosition(BoardGrid));
 
             if (selectedPos == null)
@@ -105,7 +110,14 @@ namespace Chess_UI
             HideHighlights();
             if (moveCache.TryGetValue(pos, out Move move))
             {
-                HandleMove(move);
+                if (move.Type == MoveType.PawnPromotion) 
+                {
+                    HandlePromotion(move.FromPos, move.ToPos);
+                }
+                else
+                {
+                    HandleMove(move);
+                }
             }
         }
 
@@ -114,6 +126,29 @@ namespace Chess_UI
             gameManager.MakeMove(move);
             DrawBoard(gameManager.Board);
             SetCursor();
+            
+            //TODO Add sounds
+            
+            if (gameManager.IsGameOver())
+            {
+                ShowGameOver();
+            }
+        }
+
+        private void HandlePromotion(Position from, Position to)
+        {
+            pieceImages[to.Row, to.Column].Source = Images.GetImage(gameManager.Player, PieceType.Pawn);
+            pieceImages[from.Row, from.Column].Source = null;
+
+            PromotionMenu promotionMenu = new PromotionMenu(gameManager.Player);
+            MenuContainer.Content = promotionMenu;
+
+            promotionMenu.SelectedPiece += type =>
+            {
+                MenuContainer.Content = null;
+                Move promotionMove = new PawnPromotion(from, to, type);
+                HandleMove(promotionMove);
+            };
         }
 
         private void CacheMoves(IEnumerable<Move> moves)
@@ -151,6 +186,39 @@ namespace Chess_UI
             {
                 Cursor = ChessCursors.BlackCursor;
             }
+        }
+
+        private bool IsMenuOnSceen()
+        {
+            return MenuContainer.Content != null;
+        }
+
+        private void ShowGameOver()
+        {
+            GameOverMenu gameOverMenu = new GameOverMenu(gameManager);
+            MenuContainer.Content = gameOverMenu;
+
+            gameOverMenu.OptionSelected += option =>
+            {
+                if (option == Option.Restart)
+                {
+                    MenuContainer.Content = null;
+                    RestartGame();
+                }
+                else
+                {
+                    Application.Current.Shutdown();
+                }
+            };
+        }
+
+        private void RestartGame()
+        {
+            HideHighlights();
+            moveCache.Clear();
+            gameManager = new GameManager(Board.Initialize(), Player.White);
+            DrawBoard(gameManager.Board);
+            SetCursor();
         }
     }
 }

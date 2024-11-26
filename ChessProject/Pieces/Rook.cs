@@ -1,4 +1,4 @@
-﻿namespace ChessLogic.Pieces
+﻿namespace ChessLogic
 {
     public class Rook : Piece
     {

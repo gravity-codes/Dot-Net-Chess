@@ -43,13 +43,31 @@
             return board[pos].Color != Color;
         }
 
+        private static IEnumerable<Move> PromotionMoves(Position from, Position to)
+        {
+            yield return new PawnPromotion(from, to, PieceType.Knight);
+            yield return new PawnPromotion(from, to, PieceType.Bishop);
+            yield return new PawnPromotion(from, to, PieceType.Rook);
+            yield return new PawnPromotion(from, to, PieceType.Queen);
+        }
+
         private IEnumerable<Move> ForwardMoves(Position from, Board board)
         {
             Position oneMovePos = from + forward;
 
             if (CanMoveTo(oneMovePos, board))
             {
-                yield return new Normal(from, oneMovePos);
+                if (oneMovePos.Row == 0 || oneMovePos.Row == 7)
+                {
+                    foreach (Move move in PromotionMoves(from, oneMovePos))
+                    {
+                        yield return move;
+                    }
+                }
+                else
+                {
+                    yield return new Normal(from, oneMovePos);
+                }
 
                 Position twoMovesPos = oneMovePos + forward;
 
@@ -68,7 +86,17 @@
 
                 if (CanCaptureAt(to, board))
                 {
-                    yield return new Normal(from, to);
+                    if (to.Row == 0 || to.Row == 7)
+                    {
+                        foreach (Move move in PromotionMoves(from, to))
+                        {
+                            yield return move;
+                        }
+                    }
+                    else
+                    {
+                        yield return new Normal(from, to);
+                    }
                 }
             }
         }
