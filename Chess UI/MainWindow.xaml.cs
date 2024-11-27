@@ -214,11 +214,36 @@ namespace Chess_UI
 
         private void RestartGame()
         {
+            selectedPos = null;
             HideHighlights();
             moveCache.Clear();
             gameManager = new GameManager(Board.Initialize(), Player.White);
             DrawBoard(gameManager.Board);
             SetCursor();
+        }
+
+        private void Window_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (!IsMenuOnSceen() && e.Key == Key.Escape)
+            {
+                ShowPauseMenu();
+            }
+        }
+
+        private void ShowPauseMenu()
+        {
+            PauseMenu pauseMenu = new PauseMenu();
+            MenuContainer.Content = pauseMenu;
+
+            pauseMenu.OptionSelected += option =>
+            {
+                MenuContainer.Content = null;
+
+                if (option == Option.Restart)
+                {
+                    RestartGame();
+                }
+            };
         }
     }
 }

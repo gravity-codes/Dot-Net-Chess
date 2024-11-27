@@ -25,6 +25,7 @@
 
         public void MakeMove(Move move)
         {
+            Board.SetPawnSkipPositions(Player, null);
             move.Execute(Board);
             Player = Player.Opponent();
             CheckForGameOver();
@@ -53,6 +54,10 @@
                 {
                     Result = Result.Draw(EndReason.Stalemate);
                 }
+            }
+            else if (Board.InsufficientMaterial())
+            {
+                Result = Result.Draw(EndReason.InsufficientMaterial);
             }
         }
 
