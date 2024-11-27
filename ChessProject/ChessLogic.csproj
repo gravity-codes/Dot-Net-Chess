@@ -6,4 +6,38 @@
     <Nullable>disable</Nullable>
   </PropertyGroup>
 
+  <ItemGroup>
+    <None Remove="Sounds\capture.wav" />
+    <None Remove="Sounds\castle.wav" />
+    <None Remove="Sounds\move-check.wav" />
+    <None Remove="Sounds\move-self.wav" />
+    <None Remove="Sounds\notify.wav" />
+    <None Remove="Sounds\promote.wav" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <COMReference Include="WMPLib">
+      <WrapperTool>tlbimp</WrapperTool>
+      <VersionMinor>0</VersionMinor>
+      <VersionMajor>1</VersionMajor>
+      <Guid>6bf52a50-394a-11d3-b153-00c04f79faa6</Guid>
+      <Lcid>0</Lcid>
+      <Isolated>false</Isolated>
+      <EmbedInteropTypes>true</EmbedInteropTypes>
+    </COMReference>
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="System.Windows.Extensions" Version="6.0.0" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Resource Include="Sounds\capture.wav" />
+    <Resource Include="Sounds\castle.wav" />
+    <Resource Include="Sounds\move-check.wav" />
+    <Resource Include="Sounds\move-self.wav" />
+    <Resource Include="Sounds\notify.wav" />
+    <Resource Include="Sounds\promote.wav" />
+  </ItemGroup>
+
 </Project>

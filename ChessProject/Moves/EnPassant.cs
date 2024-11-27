@@ -14,10 +14,12 @@
             CapturePosition = new Position(fromPos.Row, ToPos.Column);
         }
 
-        public override void Execute(Board board)
+        public override bool Execute(Board board)
         {
             new Normal(FromPos, ToPos).Execute(board);
             board[CapturePosition] = null;
+
+            return true;
         }
     }
 }
